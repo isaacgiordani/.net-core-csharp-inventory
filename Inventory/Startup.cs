@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Inventory.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Inventory.Services;
 
 namespace Inventory
 {
@@ -48,6 +49,9 @@ namespace Inventory
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<CompanyService>();
+            services.AddScoped<EmployeeService>();
+            services.AddScoped<EquipmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

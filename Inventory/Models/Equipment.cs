@@ -9,10 +9,6 @@ namespace Inventory.Models
         [Display(Name = "ID")]
         public int EquipmentId { get; set; }
 
-        //[Display(Name = "Empresa")]
-        //public int CompanyId { get; set; }
-        //public virtual Company Company { get; set; }
-
         [Required(ErrorMessage = "O campo é requerido.")]
         [Display(Name = "Patrimônio")]
         public long Equity { get; set; }
@@ -20,28 +16,16 @@ namespace Inventory.Models
         [Display(Name = "Patrimônio Antigo")]
         public long OldEquity { get; set; }
 
-        //[Display(Name = "Colaborador")]
-        //public int EmployeeId { get; set; }
-        //public virtual Employee Employee { get; set; }
+        [Display(Name = "Colaborador")]
 
         public string Hostname { get; set; }
 
         [Display(Name = "Hostname Antigo")]
         public string OldHostname { get; set; }
 
-        //[Display(Name = "Tipo")]
-        //public int EquipmentTypeId { get; set; }
-        //public virtual EquipmentType EquipmentType { get; set; }
-
         public string MAC { get; set; }
 
         public string IP { get; set; }
-
-        //public int PlaceId { get; set; }
-        //public virtual Place Place { get; set; }
-
-        //[Display(Name = "Departamento")]
-        //public string Department { get; set; }
 
         [Display(Name = "Memória")]
         public string MEM { get; set; }
@@ -80,8 +64,12 @@ namespace Inventory.Models
         [Display(Name = "Ativo?")]
         public bool Active { get; set; } = true;
 
-        public Employee Employee { get; set; }
-
+        [Display(Name = "Colaborador")]
+        public virtual Employee Employee { get; set; }
+        
+        [Display(Name = "ID Colaborador")]
+        public int EmployeeId { get; set; }
+        
         public Equipment() 
         { 
         }

@@ -49,7 +49,9 @@ namespace Inventory.Models
         public DateTime LastUpdate { get; set; }
 
         [Display(Name = "Empresa")]
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
+        [Display(Name = "ID Empresa")]
+        public int CompanyId { get; set; }
 
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
 
