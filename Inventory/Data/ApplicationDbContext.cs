@@ -13,6 +13,9 @@ namespace Inventory.Data
             : base(options)
         {
         }
-        public DbSet<Inventory.Models.Company> Company { get; set; }
-    }
+
+        public DbSet<Company> Company { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
+}
 }
