@@ -48,13 +48,16 @@ namespace Inventory.Models
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime LastUpdate { get; set; }
 
+        [Display(Name = "Empresa")]
+        public Company Company { get; set; }
+
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
 
         public Employee ()
         {
         }
 
-        public Employee(int employeeId, string enrollment, string name, string email, string externEmail, string rg, string cpf, bool active, DateTime registration, DateTime lastUpdate)
+        public Employee(int employeeId, string enrollment, string name, string email, string externEmail, string rg, string cpf, bool active, DateTime registration, DateTime lastUpdate, Company company)
         {
             EmployeeId = employeeId;
             Enrollment = enrollment;
@@ -66,6 +69,7 @@ namespace Inventory.Models
             Active = active;
             Registration = registration;
             LastUpdate = lastUpdate;
+            Company = company;
         }
 
         public void AddEquipment(Equipment e)

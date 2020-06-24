@@ -79,5 +79,36 @@ namespace Inventory.Models
 
         [Display(Name = "Ativo?")]
         public bool Active { get; set; } = true;
+
+        public Employee Employee { get; set; }
+
+        public Equipment() 
+        { 
+        }
+
+        public Equipment(int equipmentId, long equity, long oldEquity, string hostname, string oldHostname, string mac, string ip, string mem, string processor, string hd, string gpu, string manufacturer, string model, string serviceTag, string serialNumber, DateTime? maintenance, DateTime? warranty, DateTime lastUpdate, string note, bool active, Employee employee)
+        {
+            EquipmentId = equipmentId;
+            Equity = equity;
+            OldEquity = oldEquity;
+            Hostname = hostname;
+            OldHostname = oldHostname;
+            MAC = mac;
+            IP = ip;
+            MEM = mem;
+            Processor = processor;
+            HD = hd;
+            GPU = gpu;
+            Manufacturer = manufacturer;
+            Model = model;
+            ServiceTag = serviceTag;
+            SerialNumber = serialNumber;
+            Maintenance = maintenance;
+            Warranty = warranty;
+            LastUpdate = lastUpdate;
+            Note = note;
+            Active = active;
+            Employee = employee;
+        }
     }
 }

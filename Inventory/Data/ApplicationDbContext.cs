@@ -15,7 +15,7 @@ namespace Inventory.Data
         }
 
         public DbSet<Company> Company { get; set; }
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employee { get; set; }
         public DbSet<Equipment> Equipment { get; set; }
 }
 }
