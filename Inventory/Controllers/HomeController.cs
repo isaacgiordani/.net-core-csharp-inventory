@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Inventory.Models;
+using Inventory.Models.ViewModels;
 
 namespace Inventory.Controllers
 {

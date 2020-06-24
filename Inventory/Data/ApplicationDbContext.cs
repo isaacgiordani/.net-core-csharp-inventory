@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Inventory.Models;
 
 namespace Inventory.Data
 {
@@ -12,5 +13,6 @@ namespace Inventory.Data
             : base(options)
         {
         }
+        public DbSet<Inventory.Models.Company> Company { get; set; }
     }
 }
