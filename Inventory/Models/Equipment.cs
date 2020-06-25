@@ -16,8 +16,7 @@ namespace Inventory.Models
         [Display(Name = "Patrimônio Antigo")]
         public long OldEquity { get; set; }
 
-        [Display(Name = "Colaborador")]
-
+        [Display(Name = "Hostname")]
         public string Hostname { get; set; }
 
         [Display(Name = "Hostname Antigo")]

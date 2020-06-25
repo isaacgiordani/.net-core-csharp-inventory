@@ -1,73 +1,77 @@
-﻿@model Inventory.Models.Employee
+﻿@model Inventory.Models.ViewModels.EmployeeFormViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo Colaborador";
 }
 
-<h2>Create</h2>
+<h2>@ViewData["Title"]</h2>
 
-<h4>Employee</h4>
+<!--<h4>Colaborador</h4>-->
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Enrollment" class="control-label"></label>
-                <input asp-for="Enrollment" class="form-control" />
-                <span asp-validation-for="Enrollment" class="text-danger"></span>
+                <label asp-for="Employee.CompanyId" class="control-label"></label>
+                <select asp-for="Employee.CompanyId" asp-items="@(new SelectList(Model.Companies,"CompanyId","Name"))" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Employee.Enrollment" class="control-label"></label>
+                <input asp-for="Employee.Enrollment" class="form-control" />
+                <span asp-validation-for="Employee.Enrollment" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="Employee.Name" class="control-label"></label>
+                <input asp-for="Employee.Name" class="form-control" />
+                <span asp-validation-for="Employee.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExternEmail" class="control-label"></label>
-                <input asp-for="ExternEmail" class="form-control" />
-                <span asp-validation-for="ExternEmail" class="text-danger"></span>
+                <label asp-for="Employee.Email" class="control-label"></label>
+                <input asp-for="Employee.Email" class="form-control" />
+                <span asp-validation-for="Employee.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RG" class="control-label"></label>
-                <input asp-for="RG" class="form-control" />
-                <span asp-validation-for="RG" class="text-danger"></span>
+                <label asp-for="Employee.ExternEmail" class="control-label"></label>
+                <input asp-for="Employee.ExternEmail" class="form-control" />
+                <span asp-validation-for="Employee.ExternEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
+                <label asp-for="Employee.RG" class="control-label"></label>
+                <input asp-for="Employee.RG" class="form-control" />
+                <span asp-validation-for="Employee.RG" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.CPF" class="control-label"></label>
+                <input asp-for="Employee.CPF" class="form-control" />
+                <span asp-validation-for="Employee.CPF" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                        <input asp-for="Employee.Active" /> @Html.DisplayNameFor(model => model.Employee.Active)
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Registration" class="control-label"></label>
-                <input asp-for="Registration" class="form-control" />
-                <span asp-validation-for="Registration" class="text-danger"></span>
+                <label asp-for="Employee.Registration" class="control-label"></label>
+                <input asp-for="Employee.Registration" class="form-control" />
+                <span asp-validation-for="Employee.Registration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastUpdate" class="control-label"></label>
-                <input asp-for="LastUpdate" class="form-control" />
-                <span asp-validation-for="LastUpdate" class="text-danger"></span>
+                <label asp-for="Employee.LastUpdate" class="control-label"></label>
+                <input asp-for="Employee.LastUpdate" class="form-control" />
+                <span asp-validation-for="Employee.LastUpdate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {
