@@ -48,10 +48,10 @@ namespace Inventory.Models
 
         public string SerialNumber { get; set; }
 
-        [Display(Name = "Data da Manutenção")]
+        [Display(Name = "Última Manutenção")]
         public DateTime? Maintenance { get; set; }
 
-        [Display(Name = "Garantia expira em")]
+        [Display(Name = "Garantia até")]
         public DateTime? Warranty { get; set; }
 
         [Display(Name = "Última Atualização")]

@@ -8,10 +8,12 @@ namespace Inventory.Services
     public class EquipmentService
     {
         private readonly ApplicationDbContext _context;
+
         public EquipmentService(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public List<Equipment> FindAll()
         //public async Task<IActionResult> FindAllAsync()
         {
@@ -21,8 +23,19 @@ namespace Inventory.Services
 
         public void Insert(Equipment obj)
         {
-            //if(obj.Active == false) { obj.Active = true; }
             _context.Add(obj);
+            _context.SaveChanges();
+        }
+
+        public Equipment FindById(int id)
+        {
+            return _context.Equipment.FirstOrDefault(obj => obj.EquipmentId == id);
+        }
+
+        public void Remove(int id)
+        {
+            var obj = _context.Equipment.Find(id);
+            _context.Equipment.Remove(obj);
             _context.SaveChanges();
         }
     }

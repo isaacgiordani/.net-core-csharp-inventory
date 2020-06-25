@@ -36,5 +36,28 @@ namespace Inventory.Controllers
             _equipmentService.Insert(equipment);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _equipmentService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _equipmentService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

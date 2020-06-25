@@ -25,5 +25,17 @@ namespace Inventory.Services
             _context.Add(obj);
             _context.SaveChanges();
         }
+
+        public Company FindById(int id)
+        {            
+            return _context.Company.FirstOrDefault(obj => obj.CompanyId == id);
+        }
+
+        public void Remove(int id)
+        {
+            var obj = _context.Company.Find(id);
+            _context.Company.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 }
