@@ -11,7 +11,7 @@ namespace Inventory.Models
         [Display(Name = "ID")]
         public int CompanyId { get; set; }
 
-        [Display(Name = "Nome")]
+        [Display(Name = "Empresa")]
         [Required(ErrorMessage = "O campo é requerido.")]
         public string Name { get; set; }
 

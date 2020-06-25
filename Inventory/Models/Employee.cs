@@ -18,7 +18,7 @@ namespace Inventory.Models
 
         [Required(ErrorMessage = "O campo é requerido.")]
         [MaxLength(60, ErrorMessage = "O campo suporta no máximo {0} caracteres")]
-        [Display(Name = "Nome")]
+        [Display(Name = "Colaborador")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "O campo é requerido.")]

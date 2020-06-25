@@ -2,6 +2,7 @@
 using Inventory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.Services
 {
@@ -28,7 +29,7 @@ namespace Inventory.Services
 
         public Employee FindById(int id)
         {
-            return _context.Employee.FirstOrDefault(obj => obj.EmployeeId == id);
+            return _context.Employee.Include(obj => obj.Company).FirstOrDefault(obj => obj.EmployeeId == id);
         }
 
         public void Remove(int id)
