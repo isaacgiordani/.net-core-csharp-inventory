@@ -1,5 +1,6 @@
 ﻿using Inventory.Models;
 using Inventory.Services;
+using Inventory.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.Controllers
@@ -68,6 +69,49 @@ namespace Inventory.Controllers
                 return NotFound();
             }
             return View(obj);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _companyService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            //List<> = service.FindAll()
+            //FormViewModel = new FormViewModel {}
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Company company)
+        {
+            if(id != company.CompanyId)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _companyService.Update(company);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
         }
     }
 }

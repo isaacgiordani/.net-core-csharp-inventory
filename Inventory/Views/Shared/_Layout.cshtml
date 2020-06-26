@@ -31,11 +31,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="Cadastros">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="" asp-controller="Companies" asp-action="Index">Empresas</a></li>
+                            <li><a asp-area="" asp-controller="Employees" asp-action="Index">Colaboradores</a></li>
+                            <li><a asp-area="" asp-controller="Equipments" asp-action="Index">Equipamentos</a></li>
+                        </ul>
+                    </li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Companies" asp-action="Index">Empresas</a></li>
-                    <li><a asp-area="" asp-controller="Employees" asp-action="Index">Colaboradores</a></li>
-                    <li><a asp-area="" asp-controller="Equipments" asp-action="Index">Equipamentos</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contato</a></li>
+
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

@@ -1,5 +1,6 @@
 ﻿using Inventory.Data;
 using Inventory.Models;
+using Inventory.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,23 @@ namespace Inventory.Services
             var obj = _context.Equipment.Find(id);
             _context.Equipment.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Equipment equipment)
+        {
+            if (!_context.Equipment.Any(obj => obj.EquipmentId == equipment.EquipmentId))
+            {
+                throw new NotFoundException("ID não encontrado!");
+            }
+            try
+            {
+                _context.Update(equipment);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException("Erro ao atualizar o registro: " + e.Message);
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Inventory.Models;
 using Inventory.Models.ViewModels;
 using Inventory.Services;
+using Inventory.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Inventory.Controllers
 {
@@ -73,6 +75,49 @@ namespace Inventory.Controllers
                 return NotFound();
             }
             return View(obj);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _equipmentService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            List<Employee> employees = _employeeService.FindAll();
+            EquipmentFormViewModel viewModel = new EquipmentFormViewModel { Equipment = obj, Employees = employees };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Equipment equipment)
+        {
+            if (id != equipment.EquipmentId)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _equipmentService.Update(equipment);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
         }
     }
 }

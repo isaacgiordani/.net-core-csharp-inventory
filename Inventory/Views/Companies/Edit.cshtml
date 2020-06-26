@@ -1,12 +1,12 @@
 ﻿@model Inventory.Models.Company
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Empresa";
 }
 
-<h2>Edit</h2>
+<h2>@ViewData["Title"]</h2>
 
-<h4>Company</h4>
+<!--<h4>Company</h4>-->
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,15 +30,13 @@
                     </label>
                 </div>
             </div>
+            <hr />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <a asp-action="Index" class="btn btn-default">Voltar</a> |
+                <input type="submit" value="Salvar" class="btn btn-warning" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

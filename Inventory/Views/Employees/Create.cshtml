@@ -63,15 +63,13 @@
                 <input asp-for="Employee.LastUpdate" class="form-control" />
                 <span asp-validation-for="Employee.LastUpdate" class="text-danger"></span>
             </div>
+            <hr />
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <a asp-action="Index" class="btn btn-default">Voltar</a> |
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {
