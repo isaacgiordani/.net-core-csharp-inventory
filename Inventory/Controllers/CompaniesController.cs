@@ -1,7 +1,9 @@
 ﻿using Inventory.Models;
+using Inventory.Models.ViewModels;
 using Inventory.Services;
 using Inventory.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Inventory.Controllers
 {
@@ -37,13 +39,13 @@ namespace Inventory.Controllers
         {
             if(id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "ID não fornecido."});
             }
 
             var obj = _companyService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
             }
             return View(obj);
         }
@@ -60,13 +62,13 @@ namespace Inventory.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
             }
 
             var obj = _companyService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
             }
             return View(obj);
         }
@@ -75,13 +77,13 @@ namespace Inventory.Controllers
         {
             if(id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
             }
 
             var obj = _companyService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
             }
 
             //List<> = service.FindAll()
@@ -96,7 +98,7 @@ namespace Inventory.Controllers
         {
             if(id != company.CompanyId)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "ID não correspondente." });
             }
 
             try
@@ -104,14 +106,24 @@ namespace Inventory.Controllers
                 _companyService.Update(company);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
+            catch (NotFoundException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch (DbConcurrencyException)
+            catch (DbConcurrencyException e)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel 
+            { 
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
