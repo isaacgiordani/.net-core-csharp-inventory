@@ -1,9 +1,9 @@
 ﻿using Inventory.Data;
 using Inventory.Models;
+using Inventory.Services.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Inventory.Services.Exceptions;
 
 namespace Inventory.Services
 {

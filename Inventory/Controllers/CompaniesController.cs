@@ -3,6 +3,7 @@ using Inventory.Models.ViewModels;
 using Inventory.Services;
 using Inventory.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 
 namespace Inventory.Controllers
@@ -106,14 +107,18 @@ namespace Inventory.Controllers
                 _companyService.Update(company);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException e)
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            /*catch (NotFoundException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
             catch (DbConcurrencyException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
-            }
+            }*/
         }
 
         public IActionResult Error(string message)
