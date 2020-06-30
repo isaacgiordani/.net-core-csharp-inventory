@@ -13,6 +13,9 @@
     <thead>
         <tr class="success">
             <th>
+                @Html.DisplayNameFor(model => model.Company.Name)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Enrollment)
             </th>
             <th>
@@ -34,22 +37,25 @@
                 @Html.DisplayNameFor(model => model.Active)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Registration)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.LastUpdate)
             </th>
-            <th></th>
+            <th>Remover</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Enrollment)
+                @Html.DisplayFor(modelItem => item.Company.Name)
+                @*@Html.ActionLink(item.Company.Name, "Details", "Employees", new { id = item.EmployeeId }, null)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Enrollment)
+                @*@Html.ActionLink(item.Enrollment, "Details", "Employees", new { id = item.EmployeeId }, null)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "Details", "Employees", new { id = item.EmployeeId }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -67,15 +73,10 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Registration)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.LastUpdate)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+            <td>                
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </td>
         </tr>
 }

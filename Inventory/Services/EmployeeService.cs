@@ -18,7 +18,7 @@ namespace Inventory.Services
         public List<Employee> FindAll()
         //public async Task<IActionResult> FindAllAsync()
         {
-            return _context.Employee.OrderBy(x => x.Name).ToList();
+            return _context.Employee.Include(obj => obj.Company). OrderBy(x => x.Name).ToList();
             //return View(await _context.Company.ToListAsync());
         }
 

@@ -20,26 +20,33 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Active)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdate)
             </th>
-            <th></th>
+            <th>
+                Remover
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "Details", "Companies", new { id = item.CompanyId }, null)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CNPJ)
+                @Html.DisplayFor(modelItem => item.CNPJ)                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
-            </td>
+            </td>            
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CompanyId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CompanyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompanyId">Delete</a>
+                @Html.DisplayFor(modelItem => item.LastUpdate)
+            </td>
+            <td>                
+                <a asp-action="Delete" asp-route-id="@item.CompanyId"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </td>
         </tr>
 }

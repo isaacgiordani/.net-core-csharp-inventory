@@ -14,7 +14,7 @@ namespace Inventory.Models
         public long Equity { get; set; }
 
         [Display(Name = "Patrimônio Antigo")]
-        public long OldEquity { get; set; }
+        public long? OldEquity { get; set; }
 
         [Display(Name = "Hostname")]
         public string Hostname { get; set; }
@@ -48,20 +48,28 @@ namespace Inventory.Models
 
         public string SerialNumber { get; set; }
 
-        [Display(Name = "Última Manutenção")]
-        public DateTime? Maintenance { get; set; }
-
         [Display(Name = "Garantia até")]
+        [DataType(DataType.Date)]
         public DateTime? Warranty { get; set; }
 
-        [Display(Name = "Última Atualização")]
-        public DateTime LastUpdate { get; set; }
+        [Display(Name = "Última Manutenção")]
+        [DataType(DataType.Date)]
+        public DateTime? Maintenance { get; set; }
 
         [Display(Name = "Observações")]
+        [MaxLength(300, ErrorMessage = "O campo suporta no máximo {0} caracteres")]
         public string Note { get; set; }
 
         [Display(Name = "Ativo?")]
         public bool Active { get; set; } = true;
+
+        [Display(Name = "Data de Cadastro")]
+        [DataType(DataType.Date)]
+        public DateTime Registration { get; set; }
+
+        [Display(Name = "Última Atualização")]
+        [DataType(DataType.DateTime)]
+        public DateTime LastUpdate { get; set; }
 
         [Display(Name = "Colaborador")]
         public virtual Employee Employee { get; set; }
@@ -73,7 +81,7 @@ namespace Inventory.Models
         { 
         }
 
-        public Equipment(int equipmentId, long equity, long oldEquity, string hostname, string oldHostname, string mac, string ip, string mem, string processor, string hd, string gpu, string manufacturer, string model, string serviceTag, string serialNumber, DateTime? maintenance, DateTime? warranty, DateTime lastUpdate, string note, bool active, Employee employee)
+        public Equipment(int equipmentId, long equity, long? oldEquity, string hostname, string oldHostname, string mac, string ip, string mem, string processor, string hd, string gpu, string manufacturer, string model, string serviceTag, string serialNumber, DateTime? warranty, DateTime? maintenance, string note, bool active, DateTime registration, DateTime lastUpdate, Employee employee)
         {
             EquipmentId = equipmentId;
             Equity = equity;
@@ -90,11 +98,12 @@ namespace Inventory.Models
             Model = model;
             ServiceTag = serviceTag;
             SerialNumber = serialNumber;
-            Maintenance = maintenance;
             Warranty = warranty;
-            LastUpdate = lastUpdate;
+            Maintenance = maintenance;
             Note = note;
             Active = active;
+            Registration = registration;
+            LastUpdate = lastUpdate;
             Employee = employee;
         }
     }

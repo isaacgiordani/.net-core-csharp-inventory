@@ -41,16 +41,17 @@ namespace Inventory.Models
         public bool Active { get; set; } = true;
 
         [Display(Name = "Data de Cadastro")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [DataType(DataType.Date)]
         public DateTime Registration { get; set; }
 
-        [Display(Name = "Data de Atualização")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [Display(Name = "Última Atualização")]
+        [DataType(DataType.DateTime)]
         public DateTime LastUpdate { get; set; }
-
+        
         [Display(Name = "Empresa")]
         public virtual Company Company { get; set; }
-        [Display(Name = "ID Empresa")]
+
+        [Display(Name = "Empresa")]
         public int CompanyId { get; set; }
 
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();

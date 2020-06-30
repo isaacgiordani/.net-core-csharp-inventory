@@ -29,13 +29,25 @@
         <dd>
             @Html.DisplayFor(model => model.Active)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Registration)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Registration)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
     </dl>
 
     <form asp-action="Delete">
         <a asp-action="Index" class="btn btn-default">Voltar</a> |
 
         <input type="hidden" asp-for="CompanyId" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="submit" value="Remover" class="btn btn-danger" />
 
     </form>
 </div>

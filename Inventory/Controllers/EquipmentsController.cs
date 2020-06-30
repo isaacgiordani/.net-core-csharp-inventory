@@ -37,6 +37,10 @@ namespace Inventory.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Equipment equipment)
         {
+            equipment.Active = true;
+            equipment.LastUpdate = DateTime.Now;
+            equipment.Registration = DateTime.Now;
+
             _equipmentService.Insert(equipment);
             return RedirectToAction(nameof(Index));
         }
@@ -109,6 +113,8 @@ namespace Inventory.Controllers
 
             try
             {
+                equipment.LastUpdate = DateTime.Now;
+
                 _equipmentService.Update(equipment);
                 return RedirectToAction(nameof(Index));
             }

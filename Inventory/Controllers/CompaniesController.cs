@@ -32,6 +32,11 @@ namespace Inventory.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Company company)
         {
+            company.Name = company.Name.ToUpper().Trim();
+            company.Active = true;
+            company.LastUpdate = DateTime.Now;
+            company.Registration = DateTime.Now;
+
             _companyService.Insert(company);
             return RedirectToAction(nameof(Index));
         }
@@ -104,6 +109,9 @@ namespace Inventory.Controllers
 
             try
             {
+                company.Name = company.Name.ToUpper().Trim();
+                company.LastUpdate = DateTime.Now;
+
                 _companyService.Update(company);
                 return RedirectToAction(nameof(Index));
             }

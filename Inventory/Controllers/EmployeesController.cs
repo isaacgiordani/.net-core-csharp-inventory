@@ -37,6 +37,16 @@ namespace Inventory.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Employee employee)
         {
+            employee.Name = employee.Name.ToUpper().Trim();
+            employee.Email = employee.Email.ToLower().Trim();
+            if (employee.ExternEmail != null)
+            {
+                employee.ExternEmail = employee.ExternEmail.ToLower().Trim();
+            }            
+            employee.Active = true;
+            employee.LastUpdate = DateTime.Now;
+            employee.Registration = DateTime.Now;
+
             _employeeService.Insert(employee);
             return RedirectToAction(nameof(Index));
         }
@@ -109,6 +119,14 @@ namespace Inventory.Controllers
 
             try
             {
+                employee.Name = employee.Name.ToUpper().Trim();
+                employee.Email = employee.Email.ToLower().Trim();
+                if (employee.ExternEmail != null)
+                {
+                    employee.ExternEmail = employee.ExternEmail.ToLower().Trim();
+                }
+                employee.LastUpdate = DateTime.Now;
+
                 _employeeService.Update(employee);
                 return RedirectToAction(nameof(Index));
             }

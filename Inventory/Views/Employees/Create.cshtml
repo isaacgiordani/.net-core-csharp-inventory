@@ -45,24 +45,7 @@
                 <label asp-for="Employee.CPF" class="control-label"></label>
                 <input asp-for="Employee.CPF" class="form-control" />
                 <span asp-validation-for="Employee.CPF" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Employee.Active" /> @Html.DisplayNameFor(model => model.Employee.Active)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Employee.Registration" class="control-label"></label>
-                <input asp-for="Employee.Registration" class="form-control" />
-                <span asp-validation-for="Employee.Registration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Employee.LastUpdate" class="control-label"></label>
-                <input asp-for="Employee.LastUpdate" class="form-control" />
-                <span asp-validation-for="Employee.LastUpdate" class="text-danger"></span>
-            </div>
+            </div>            
             <hr />
             <div class="form-group">
                 <a asp-action="Index" class="btn btn-default">Voltar</a> |

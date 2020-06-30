@@ -19,7 +19,7 @@ namespace Inventory.Services
         public List<Equipment> FindAll()
         //public async Task<IActionResult> FindAllAsync()
         {
-            return _context.Equipment.OrderBy(x => x.Equity).ToList();
+            return _context.Equipment.Include(obj => obj.Employee).OrderBy(x => x.Equity).ToList();
             //return View(await _context.Company.ToListAsync());
         }
 
