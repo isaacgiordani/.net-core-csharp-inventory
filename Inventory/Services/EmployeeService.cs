@@ -4,6 +4,7 @@ using Inventory.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inventory.Services
 {
@@ -15,41 +16,40 @@ namespace Inventory.Services
         {
             _context = context;
         }
-        public List<Employee> FindAll()
-        //public async Task<IActionResult> FindAllAsync()
+        public async Task<List<Employee>> FindAllAsync()
         {
-            return _context.Employee.Include(obj => obj.Company). OrderBy(x => x.Name).ToList();
-            //return View(await _context.Company.ToListAsync());
+            return await _context.Employee.Include(obj => obj.Company).OrderBy(y => y.Name).OrderBy(x => x.Company.Name).ToListAsync();
         }
 
-        public void Insert(Employee obj)
+        public async Task InsertAsync(Employee obj)
         {
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Employee FindById(int id)
+        public async Task<Employee> FindByIdAsync(int id)
         {
-            return _context.Employee.Include(obj => obj.Company).FirstOrDefault(obj => obj.EmployeeId == id);
+            return await _context.Employee.Include(obj => obj.Company).FirstOrDefaultAsync(obj => obj.EmployeeId == id);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Employee.Find(id);
+            var obj = await _context.Employee.FindAsync(id);
             _context.Employee.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Employee employee)
+        public async Task UpdateAsync(Employee employee)
         {
-            if (!_context.Employee.Any(obj => obj.EmployeeId == employee.EmployeeId))
+            var hasAny = await _context.Employee.AnyAsync(obj => obj.EmployeeId == employee.EmployeeId);
+            if (!hasAny)
             {
                 throw new NotFoundException("ID não encontrado!");
             }
             try
             {
                 _context.Update(employee);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {

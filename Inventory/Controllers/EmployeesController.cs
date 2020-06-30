@@ -1,11 +1,11 @@
 ﻿using Inventory.Models;
 using Inventory.Models.ViewModels;
 using Inventory.Services;
-using Inventory.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Inventory.Controllers
 {
@@ -20,23 +20,30 @@ namespace Inventory.Controllers
             _companyService = companyService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _employeeService.FindAll();
+            var list = await _employeeService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var companies = _companyService.FindAll();
+            var companies = await _companyService.FindAllAsync();
             var viewModel = new EmployeeFormViewModel { Companies = companies };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Employee employee)
+        public async Task<IActionResult> Create(Employee employee)
         {
+            if (!ModelState.IsValid)
+            {
+                var companies = await _companyService.FindAllAsync();
+                var viewModel = new EmployeeFormViewModel { Employee = employee, Companies = companies };
+                return View(employee);
+            }
+
             employee.Name = employee.Name.ToUpper().Trim();
             employee.Email = employee.Email.ToLower().Trim();
             if (employee.ExternEmail != null)
@@ -47,18 +54,18 @@ namespace Inventory.Controllers
             employee.LastUpdate = DateTime.Now;
             employee.Registration = DateTime.Now;
 
-            _employeeService.Insert(employee);
+            await _employeeService.InsertAsync(employee);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
             }
 
-            var obj = _employeeService.FindById(id.Value);
+            var obj = await _employeeService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
@@ -68,20 +75,20 @@ namespace Inventory.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _employeeService.Remove(id);
+            await _employeeService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
             }
 
-            var obj = _employeeService.FindById(id.Value);
+            var obj = await _employeeService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
@@ -89,20 +96,20 @@ namespace Inventory.Controllers
             return View(obj);
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
             }
 
-            var obj = _employeeService.FindById(id.Value);
+            var obj = await _employeeService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
             }
 
-            List<Company> companies = _companyService.FindAll();
+            List<Company> companies = await _companyService.FindAllAsync();
             EmployeeFormViewModel viewModel = new EmployeeFormViewModel { Employee = obj, Companies = companies };
 
             return View(viewModel);
@@ -110,8 +117,15 @@ namespace Inventory.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Employee employee)
+        public async Task<IActionResult> Edit(int id, Employee employee)
         {
+            if (!ModelState.IsValid)
+            {
+                var companies = await _companyService.FindAllAsync();
+                var viewModel = new EmployeeFormViewModel { Employee = employee, Companies = companies };
+                return View(employee);
+            }
+
             if (id != employee.EmployeeId)
             {
                 return RedirectToAction(nameof(Error), new { message = "ID não correspondente." });
@@ -127,7 +141,7 @@ namespace Inventory.Controllers
                 }
                 employee.LastUpdate = DateTime.Now;
 
-                _employeeService.Update(employee);
+                await _employeeService.UpdateAsync(employee);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)

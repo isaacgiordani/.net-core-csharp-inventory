@@ -12,7 +12,8 @@ namespace Inventory.Models
         public int CompanyId { get; set; }
 
         [Display(Name = "Empresa")]
-        [Required(ErrorMessage = "O campo é requerido.")]
+        [Required(ErrorMessage = "O campo {0} é requerido.")]
+        [StringLength(60, MinimumLength = 5, ErrorMessage ="O campo {0} deve possuir entre {2} e {1} caracteres")]
         public string Name { get; set; }
 
         public string CNPJ { get; set; }

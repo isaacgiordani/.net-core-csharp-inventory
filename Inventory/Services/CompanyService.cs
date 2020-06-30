@@ -4,6 +4,7 @@ using Inventory.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inventory.Services
 {
@@ -14,42 +15,40 @@ namespace Inventory.Services
         {
             _context = context;
         }
-        public List<Company> FindAll()
-        //public async Task<IActionResult> FindAllAsync()
+        public async Task<List<Company>> FindAllAsync()
         {
-            return _context.Company.OrderBy(x => x.Name).ToList();
-            //return View(await _context.Company.ToListAsync());
+            return await _context.Company.OrderBy(x => x.Name).ToListAsync();
         }
 
-        public void Insert(Company obj)
+        public async Task InsertAsync(Company obj)
         {
-            //if(obj.Active == false) { obj.Active = true; }
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Company FindById(int id)
+        public async Task<Company> FindByIdAsync(int id)
         {            
-            return _context.Company.FirstOrDefault(obj => obj.CompanyId == id);
+            return await _context.Company.FirstOrDefaultAsync(obj => obj.CompanyId == id);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Company.Find(id);
+            var obj = await _context.Company.FindAsync(id);
             _context.Company.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Company company)
+        public async Task UpdateAsync(Company company)
         {
-            if(!_context.Company.Any(obj => obj.CompanyId == company.CompanyId))
+            bool hasAny = await _context.Company.AnyAsync(obj => obj.CompanyId == company.CompanyId);
+            if (!hasAny)
             {
                 throw new NotFoundException("ID não encontrado!");
             }
             try
             {
                 _context.Update(company);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
