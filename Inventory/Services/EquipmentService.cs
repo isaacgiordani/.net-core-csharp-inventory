@@ -35,9 +35,16 @@ namespace Inventory.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Equipment.FindAsync(id);
-            _context.Equipment.Remove(obj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var obj = await _context.Equipment.FindAsync(id);
+                _context.Equipment.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
         }
 
         public async Task UpdateAsync(Equipment equipment)

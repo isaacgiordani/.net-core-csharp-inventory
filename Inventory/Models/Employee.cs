@@ -56,6 +56,14 @@ namespace Inventory.Models
 
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
 
+        public string Info
+        {
+            get
+            {
+                    return Company.Name + " | " + Name;
+            }
+        }
+
         public Employee ()
         {
         }

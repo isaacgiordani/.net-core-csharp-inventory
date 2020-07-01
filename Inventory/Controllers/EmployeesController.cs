@@ -1,6 +1,7 @@
 ﻿using Inventory.Models;
 using Inventory.Models.ViewModels;
 using Inventory.Services;
+using Inventory.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -77,8 +78,15 @@ namespace Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _employeeService.RemoveAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _employeeService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Não foi possível excluir o registro, pois ele possui relacionamento(s) com outra(s) tabela(s). "});
+            }
         }
 
         public async Task<IActionResult> Details(int? id)

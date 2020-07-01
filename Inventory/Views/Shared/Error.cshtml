@@ -2,15 +2,14 @@
 @{
     ViewData["Title"] = "Erro!";
 }
-    <div class="text-danger">
-        <h1>Oops.</h1>
-        <h2>Um erro aconteceu ao processar a sua requisição.</h2>        
-    </div>
+<div class="text-danger">
+    <h1><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>  Oops.</h1>
+    <h3>Um erro ocorreu ao processar a sua requisição.</h3>
+</div>
 
-    <h2 class="text-warning">
-        <span class="glyphicon glyphicon-alert" aria-hidden="true"> @Model.Message</span>
-    </h2>
-    <hr />
+<div class="alert alert-danger" role="alert">@Model.Message</div>
+<a asp-area="" asp-controller="home" asp-action="Index" class="btn btn-info">Home</a>
+<hr />
 
 @if (Model.ShowRequestId)
 {

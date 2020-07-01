@@ -14,5 +14,20 @@ namespace Inventory.Data
         public DbSet<Company> Company { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Equipment> Equipment { get; set; }
-}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Employee>()
+                .HasOne(b => b.Company)
+                .WithMany(a => a.Employees)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Equipment>()
+                .HasOne(b => b.Employee)
+                .WithMany(a => a.Equipments)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+    }
 }
