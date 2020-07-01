@@ -1,53 +1,64 @@
 ﻿@model Inventory.Models.Company
 
 @{
-    ViewData["Title"] = "Exclusão de Empresa";
+    ViewData["Title"] = "Removendo Empresa";
 }
 
-    <h2>@ViewData["Title"]</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="Companies" asp-action="Index">Empresas</a></li>
+    <li class="active">Remover</li>
+</ol>
 
-<h3>Você tem certeza que deseja remover esta empresa?</h3>
-<div>
-    <!--<h4>Empresa</h4>-->
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CNPJ)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CNPJ)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Registration)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Registration)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdate)
-        </dd>
-    </dl>
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> @ViewData["Title"]</div>
+    <div class="panel-body">
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            Você tem certeza que deseja remover esta empresa?
+        </div>
 
-    <form asp-action="Delete">
-        <a asp-action="Index" class="btn btn-default">Voltar</a> |
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CNPJ)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CNPJ)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Active)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Active)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Registration)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Registration)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastUpdate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastUpdate)
+                </dd>
+            </dl>
 
-        <input type="hidden" asp-for="CompanyId" />
-        <input type="submit" value="Remover" class="btn btn-danger" />
-
-    </form>
+            <form asp-action="Delete">
+                <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
+                <input type="hidden" asp-for="CompanyId" />
+                <button type="submit" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remover
+                </button>                
+            </form>
+        </div>
+    </div>
 </div>

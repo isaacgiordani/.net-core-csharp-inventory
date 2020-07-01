@@ -12,12 +12,12 @@ namespace Inventory.Models
         public int EmployeeId { get; set; }
 
         [Required(ErrorMessage = "O campo é requerido.")]
-        [MaxLength(8, ErrorMessage = "O campo suporta no máximo {0} caracteres")]
+        [MaxLength(8, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
         [Display(Name = "Matrícula")]
         public string Enrollment { get; set; }
 
         [Required(ErrorMessage = "O campo é requerido.")]
-        [MaxLength(60, ErrorMessage = "O campo suporta no máximo {0} caracteres")]
+        [MaxLength(60, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
         [Display(Name = "Colaborador")]
         public string Name { get; set; }
 
@@ -30,11 +30,11 @@ namespace Inventory.Models
         [Display(Name = "E-mail Secundário")]
         public string ExternEmail { get; set; }
 
-        [MaxLength(20, ErrorMessage = "O campo suporta no máximo {0} caracteres")]
+        [MaxLength(20, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
         public string RG { get; set; }
 
         [Required(ErrorMessage = "O campo é requerido.")]
-        [MaxLength(14, ErrorMessage = "O campo suporta no máximo {0} caracteres")]
+        [MaxLength(14, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
         public string CPF { get; set; }
 
         [Display(Name = "Ativo?")]
@@ -55,14 +55,6 @@ namespace Inventory.Models
         public int CompanyId { get; set; }
 
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
-
-        public string Info
-        {
-            get
-            {
-                    return Company.Name + " | " + Name;
-            }
-        }
 
         public Employee ()
         {
@@ -93,7 +85,7 @@ namespace Inventory.Models
             Equipments.Remove(e);
         }
 
-        public int TotalActiveEquipment() 
+        public int TotalActiveEquipment()
         {
             return Equipments.Where(e => e.Active == true).Count();
         }
@@ -104,7 +96,7 @@ namespace Inventory.Models
 
         public int TotalUnderWarranty()
         {
-            return Equipments.Where(e => e.Warranty >= DateTime.Now).Count();
+            return Equipments.Where(e => e.Warranty >= DateTime.Now & e.EmployeeId == EmployeeId).Count();
         }
 
         public int TotalOutOfWarranty()

@@ -2,6 +2,7 @@
 using Inventory.Models;
 using Inventory.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,6 +64,17 @@ namespace Inventory.Services
             {
                 throw new DbConcurrencyException("Erro ao atualizar o registro: " + e.Message);
             }
+        }
+
+        public async Task<List<Equipment>> EquipmentsUnderWarrantyAsync()
+        {
+            var result = from obj in _context.Equipment select obj;
+            result = result.Where(x => x.Warranty >= DateTime.Today);
+            return await result
+                .Include(x => x.Employee)
+                .Include(x => x.Employee.Company)
+                .OrderByDescending(x => x.Warranty)
+                .ToListAsync();
         }
     }
 }

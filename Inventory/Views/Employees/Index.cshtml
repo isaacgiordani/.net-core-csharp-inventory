@@ -55,7 +55,7 @@
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.Name)*@
-                @Html.ActionLink(item.Name, "Details", "Employees", new { id = item.EmployeeId }, null)
+                @Html.ActionLink(item.Name, "Details", "Employees", new { id = item.EmployeeId }, null)                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -74,10 +74,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastUpdate)
-            </td>
-            <td>                
+            </td>            
+            <td>
                 <a asp-action="Delete" asp-route-id="@item.EmployeeId"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </td>
+
         </tr>
 }
     </tbody>

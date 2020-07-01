@@ -157,5 +157,11 @@ namespace Inventory.Controllers
             };
             return View(viewModel);
         }
+
+        public async Task<IActionResult> EquipmentsUnderWarranty()
+        {
+            var result = await _equipmentService.EquipmentsUnderWarrantyAsync();
+            return View(result);
+        }
     }
 }

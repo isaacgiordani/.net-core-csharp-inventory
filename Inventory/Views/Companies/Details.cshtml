@@ -1,48 +1,57 @@
 ﻿@model Inventory.Models.Company
 
 @{
-    ViewData["Title"] = "Detalhe da Empresa";
+    ViewData["Title"] = "Visualizando Empresa";
 }
 
-    <h2>@ViewData["Title"]</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="Companies" asp-action="Index">Empresas</a></li>
+    <li class="active">Visualização</li>
+</ol>
 
-    <div>
-        <!--<h4>Company</h4>-->
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> @ViewData["Title"] </div>
+    <div class="panel-body">
+
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CNPJ)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CNPJ)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Active)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Active)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Registration)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Registration)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastUpdate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastUpdate)
+                </dd>
+            </dl>
+        </div>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CNPJ)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CNPJ)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Active)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Active)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Registration)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Registration)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.LastUpdate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.LastUpdate)
-            </dd>
-        </dl>
+        <div>
+            <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
+            <a asp-action="Edit" asp-route-id="@Model.CompanyId" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Alterar</a>
+        </div>
     </div>
-    <div>
-        <a asp-action="Index" class="btn btn-default">Voltar</a> |
-        <a asp-action="Edit" asp-route-id="@Model.CompanyId" class="btn btn-warning">Editar</a>
-    </div>
+</div>

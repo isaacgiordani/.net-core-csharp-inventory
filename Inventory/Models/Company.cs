@@ -35,11 +35,11 @@ namespace Inventory.Models
         {
         }
 
-        public Company(int companyId, string name, string cNPJ, bool active, DateTime registration, DateTime lastUpdate)
+        public Company(int companyId, string name, string cnpj, bool active, DateTime registration, DateTime lastUpdate)
         {
             CompanyId = companyId;
             Name = name;
-            CNPJ = cNPJ;
+            CNPJ = cnpj;
             Active = active;
             Registration = registration;
             LastUpdate = lastUpdate;

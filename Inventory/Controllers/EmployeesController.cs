@@ -42,7 +42,7 @@ namespace Inventory.Controllers
             {
                 var companies = await _companyService.FindAllAsync();
                 var viewModel = new EmployeeFormViewModel { Employee = employee, Companies = companies };
-                return View(employee);
+                return View(viewModel);
             }
 
             employee.Name = employee.Name.ToUpper().Trim();
