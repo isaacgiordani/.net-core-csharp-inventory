@@ -1,75 +1,94 @@
 ﻿@model Inventory.Models.Employee
 
 @{
-    ViewData["Title"] = "Exclusão de Colaborador";
+    ViewData["Title"] = "Removendo Colaborador";
 }
 
-    <h2>@ViewData["Title"]</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="Employees" asp-action="Index">Colaboradores</a></li>
+    <li class="active">Remover</li>
+</ol>
 
-    <h3>Você tem certeza que deseja remover este colaborador?</h3>
-    <div>
-        <!--<h4>Employee</h4>-->
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Enrollment)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Enrollment)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ExternEmail)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ExternEmail)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.RG)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.RG)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CPF)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CPF)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Active)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Active)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Registration)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Registration)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.LastUpdate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.LastUpdate)
-            </dd>
-        </dl>
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> @ViewData["Title"]</div>
+    <div class="panel-body">
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+            Você tem certeza que deseja remover este colaborador?
+        </div>
+
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Company.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Company.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Enrollment)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Enrollment)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ExternEmail)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ExternEmail)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RG)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RG)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CPF)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CPF)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Active)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Active)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Registration)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Registration)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastUpdate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastUpdate)
+                </dd>
+            </dl>
+        </div>
 
         <form asp-action="Delete">
-            <a asp-action="Index" class="btn btn-default">Voltar</a> |
+            <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
             <input type="hidden" asp-for="EmployeeId" />
-            <input type="submit" value="Remover" class="btn btn-danger" />
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remover
+            </button>
         </form>
     </div>
+</div>

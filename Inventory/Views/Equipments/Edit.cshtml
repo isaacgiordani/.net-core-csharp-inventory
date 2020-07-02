@@ -1,130 +1,140 @@
 ﻿@model Inventory.Models.ViewModels.EquipmentFormViewModel
 
 @{
-    ViewData["Title"] = "Editar Equipamento";
+    ViewData["Title"] = "Editando Equipamento";
 }
 
-<h2>@ViewData["Title"]</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="Equipments" asp-action="Index">Equipamentos</a></li>
+    <li class="active">Editar</li>
+</ol>
 
-<!--<h4>Equipamento</h4>-->
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Equipment.EquipmentId" />
-            <div class="form-group">
-                <label asp-for="Equipment.EmployeeId" class="control-label"></label>
-                <select asp-for="Equipment.EmployeeId" asp-items="@(new SelectList(Model.Employees,"EmployeeId","Name"))" class="form-control"></select>
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @ViewData["Title"]</div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Equipment.EquipmentId" />
+                    <div class="form-group">
+                        <label asp-for="Equipment.EmployeeId" class="control-label"></label>
+                        <select asp-for="Equipment.EmployeeId" asp-items="@(new SelectList(Model.Employees,"EmployeeId","Name"))" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Equity" class="control-label"></label>
+                        <input asp-for="Equipment.Equity" class="form-control" />
+                        <span asp-validation-for="Equipment.Equity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.OldEquity" class="control-label"></label>
+                        <input asp-for="Equipment.OldEquity" class="form-control" />
+                        <span asp-validation-for="Equipment.OldEquity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Hostname" class="control-label"></label>
+                        <input asp-for="Equipment.Hostname" class="form-control" />
+                        <span asp-validation-for="Equipment.Hostname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.OldHostname" class="control-label"></label>
+                        <input asp-for="Equipment.OldHostname" class="form-control" />
+                        <span asp-validation-for="Equipment.OldHostname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.MAC" class="control-label"></label>
+                        <input asp-for="Equipment.MAC" class="form-control" />
+                        <span asp-validation-for="Equipment.MAC" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.IP" class="control-label"></label>
+                        <input asp-for="Equipment.IP" class="form-control" />
+                        <span asp-validation-for="Equipment.IP" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.MEM" class="control-label"></label>
+                        <input asp-for="Equipment.MEM" class="form-control" />
+                        <span asp-validation-for="Equipment.MEM" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Processor" class="control-label"></label>
+                        <input asp-for="Equipment.Processor" class="form-control" />
+                        <span asp-validation-for="Equipment.Processor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.HD" class="control-label"></label>
+                        <input asp-for="Equipment.HD" class="form-control" />
+                        <span asp-validation-for="Equipment.HD" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.GPU" class="control-label"></label>
+                        <input asp-for="Equipment.GPU" class="form-control" />
+                        <span asp-validation-for="Equipment.GPU" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Manufacturer" class="control-label"></label>
+                        <input asp-for="Equipment.Manufacturer" class="form-control" />
+                        <span asp-validation-for="Equipment.Manufacturer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Model" class="control-label"></label>
+                        <input asp-for="Equipment.Model" class="form-control" />
+                        <span asp-validation-for="Equipment.Model" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.ServiceTag" class="control-label"></label>
+                        <input asp-for="Equipment.ServiceTag" class="form-control" />
+                        <span asp-validation-for="Equipment.ServiceTag" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.SerialNumber" class="control-label"></label>
+                        <input asp-for="Equipment.SerialNumber" class="form-control" />
+                        <span asp-validation-for="Equipment.SerialNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Warranty" class="control-label"></label>
+                        <input asp-for="Equipment.Warranty" class="form-control" />
+                        <span asp-validation-for="Equipment.Warranty" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Maintenance" class="control-label"></label>
+                        <input asp-for="Equipment.Maintenance" class="form-control" />
+                        <span asp-validation-for="Equipment.Maintenance" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Note" class="control-label"></label>
+                        <input asp-for="Equipment.Note" class="form-control" />
+                        <span asp-validation-for="Equipment.Note" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="Equipment.Active" /> @Html.DisplayNameFor(model => model.Equipment.Active)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.Registration" class="control-label"></label>
+                        <input asp-for="Equipment.Registration" class="form-control" readonly />
+                        <span asp-validation-for="Equipment.Registration" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Equipment.LastUpdate" class="control-label"></label>
+                        <input asp-for="Equipment.LastUpdate" class="form-control" readonly />
+                        <span asp-validation-for="Equipment.LastUpdate" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Salvar
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Equity" class="control-label"></label>
-                <input asp-for="Equipment.Equity" class="form-control" />
-                <span asp-validation-for="Equipment.Equity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.OldEquity" class="control-label"></label>
-                <input asp-for="Equipment.OldEquity" class="form-control" />
-                <span asp-validation-for="Equipment.OldEquity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Hostname" class="control-label"></label>
-                <input asp-for="Equipment.Hostname" class="form-control" />
-                <span asp-validation-for="Equipment.Hostname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.OldHostname" class="control-label"></label>
-                <input asp-for="Equipment.OldHostname" class="form-control" />
-                <span asp-validation-for="Equipment.OldHostname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.MAC" class="control-label"></label>
-                <input asp-for="Equipment.MAC" class="form-control" />
-                <span asp-validation-for="Equipment.MAC" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.IP" class="control-label"></label>
-                <input asp-for="Equipment.IP" class="form-control" />
-                <span asp-validation-for="Equipment.IP" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.MEM" class="control-label"></label>
-                <input asp-for="Equipment.MEM" class="form-control" />
-                <span asp-validation-for="Equipment.MEM" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Processor" class="control-label"></label>
-                <input asp-for="Equipment.Processor" class="form-control" />
-                <span asp-validation-for="Equipment.Processor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.HD" class="control-label"></label>
-                <input asp-for="Equipment.HD" class="form-control" />
-                <span asp-validation-for="Equipment.HD" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.GPU" class="control-label"></label>
-                <input asp-for="Equipment.GPU" class="form-control" />
-                <span asp-validation-for="Equipment.GPU" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Manufacturer" class="control-label"></label>
-                <input asp-for="Equipment.Manufacturer" class="form-control" />
-                <span asp-validation-for="Equipment.Manufacturer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Model" class="control-label"></label>
-                <input asp-for="Equipment.Model" class="form-control" />
-                <span asp-validation-for="Equipment.Model" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.ServiceTag" class="control-label"></label>
-                <input asp-for="Equipment.ServiceTag" class="form-control" />
-                <span asp-validation-for="Equipment.ServiceTag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.SerialNumber" class="control-label"></label>
-                <input asp-for="Equipment.SerialNumber" class="form-control" />
-                <span asp-validation-for="Equipment.SerialNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Warranty" class="control-label"></label>
-                <input asp-for="Equipment.Warranty" class="form-control" />
-                <span asp-validation-for="Equipment.Warranty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Maintenance" class="control-label"></label>
-                <input asp-for="Equipment.Maintenance" class="form-control" />
-                <span asp-validation-for="Equipment.Maintenance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Note" class="control-label"></label>
-                <input asp-for="Equipment.Note" class="form-control" />
-                <span asp-validation-for="Equipment.Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Equipment.Active" /> @Html.DisplayNameFor(model => model.Equipment.Active)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.Registration" class="control-label"></label>
-                <input asp-for="Equipment.Registration" class="form-control" readonly />
-                <span asp-validation-for="Equipment.Registration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Equipment.LastUpdate" class="control-label"></label>
-                <input asp-for="Equipment.LastUpdate" class="form-control" readonly/>
-                <span asp-validation-for="Equipment.LastUpdate" class="text-danger"></span>
-            </div>
-            <hr />
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-default">Voltar</a> |
-                <input type="submit" value="Salvar" class="btn btn-warning" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

@@ -1,150 +1,158 @@
 ﻿@model Inventory.Models.ViewModels.EquipmentFormViewModel
 
 @{
-    ViewData["Title"] = "Detalhe do Equipamento";
+    ViewData["Title"] = "Visualizando Equipamento";
 }
 
-    <h2>@ViewData["Title"]</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="Equipments" asp-action="Index">Equipamentos</a></li>
+    <li class="active">Visualizar</li>
+</ol>
 
-    <div>
-        <!--<h4>Equipment</h4>-->
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Employee.Company.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Employee.Company.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Employee.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Employee.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Equity)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Equity)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.OldEquity)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.OldEquity)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Hostname)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Hostname)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.OldHostname)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.OldHostname)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.MAC)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.MAC)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.IP)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.IP)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.MEM)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.MEM)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Processor)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Processor)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.HD)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.HD)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.GPU)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.GPU)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Manufacturer)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Manufacturer)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Model)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Model)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.ServiceTag)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.ServiceTag)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.SerialNumber)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.SerialNumber)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Warranty)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Warranty)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Maintenance)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Maintenance)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Note)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Note)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Active)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Active)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.Registration)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.Registration)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Equipment.LastUpdate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Equipment.LastUpdate)
-            </dd>
-        </dl>
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> @ViewData["Title"] </div>
+    <div class="panel-body">
+
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Employee.Company.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Employee.Company.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Employee.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Employee.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Equity)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Equity)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.OldEquity)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.OldEquity)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Hostname)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Hostname)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.OldHostname)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.OldHostname)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.MAC)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.MAC)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.IP)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.IP)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.MEM)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.MEM)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Processor)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Processor)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.HD)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.HD)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.GPU)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.GPU)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Manufacturer)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Manufacturer)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Model)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Model)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.ServiceTag)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.ServiceTag)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.SerialNumber)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.SerialNumber)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Warranty)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Warranty)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Maintenance)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Maintenance)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Note)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Note)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Active)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Active)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.Registration)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.Registration)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Equipment.LastUpdate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Equipment.LastUpdate)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
+            <a asp-action="Edit" asp-route-id="@Model.Equipment.EquipmentId" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a>
+        </div>
     </div>
-    <div>
-        <a asp-action="Index" class="btn btn-default">Voltar</a> |
-        <a asp-action="Edit" asp-route-id="@Model.Equipment.EquipmentId" class="btn btn-warning">Edit</a>
-    </div>
+</div>

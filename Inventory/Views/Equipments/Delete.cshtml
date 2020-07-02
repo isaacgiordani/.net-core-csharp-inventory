@@ -1,15 +1,24 @@
 ﻿@model Inventory.Models.Equipment
 
 @{
-    ViewData["Title"] = "Exclusão de Equipamento";
+    ViewData["Title"] = "Removendo Equipamento";
 }
 
-    <h2>@ViewData["Title"]</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="Equipments" asp-action="Index">Equipamentos</a></li>
+    <li class="active">Remover</li>
+</ol>
 
-    <h3>Você tem certeza que deseja remover este equipamento?</h3>
-    <div>
-        <!--<h4>Equipment</h4>-->
-        <hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> @ViewData["Title"]</div>
+    <div class="panel-body">
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+            Você tem certeza que deseja remover este equipamento?
+        </div>
+
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Equity)
@@ -134,8 +143,11 @@
         </dl>
 
         <form asp-action="Delete">
-            <a asp-action="Index" class="btn btn-default">Voltar</a> |
+            <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
             <input type="hidden" asp-for="EquipmentId" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remover
+            </button>
         </form>
     </div>
+</div>
