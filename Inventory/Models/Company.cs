@@ -16,6 +16,8 @@ namespace Inventory.Models
         [StringLength(60, MinimumLength = 5, ErrorMessage ="O campo {0} deve possuir entre {2} e {1} caracteres")]
         public string Name { get; set; }
 
+        [RegularExpression(@"^\d{2}.\d{3}.\d{3}/\d{4}-\d{2}$",
+        ErrorMessage = "O CNPJ deve estar no formato 00.000.000/0000-00")]
         public string CNPJ { get; set; }
 
         [Display(Name = "Ativo?")]
@@ -27,6 +29,7 @@ namespace Inventory.Models
 
         [Display(Name = "Última Atualização")]
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
         public DateTime LastUpdate { get; set; }
 
         public ICollection<Employee> Employees { get; set; } = new List<Employee>();

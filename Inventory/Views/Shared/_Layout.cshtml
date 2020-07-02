@@ -1,11 +1,17 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Inventory</title>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Ivtr | @ViewData["Title"]</title>
 
     <environment include="Development">
+        <!-- Bootstrap tabela -->
+        <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />-->
+        <link rel="stylesheet" href="~/css/jquery.dataTables.min.css" />
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-superhero.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -15,6 +21,16 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <!--Start-->
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>    
+    
+    <script>
+        $(document).ready(function () {
+            $('#tabela').DataTable();
+        });
+    </script>
+    <!--End-->
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -55,7 +71,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <!--<p>&copy; 2020 - Inventory</p>-->
+            <!--RODAPÉ-->
         </footer>
     </div>
 
@@ -79,6 +95,8 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+
+    <script src="~/js/jquery.dataTables.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
