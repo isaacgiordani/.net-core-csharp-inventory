@@ -6,5 +6,6 @@ namespace Inventory.Models.ViewModels
     {
         public Equipment Equipment { get; set; }
         public ICollection<Employee> Employees { get; set; }
+        public ICollection<EquipmentType> EquipmentTypes { get; set; }
     }
 }

@@ -9,7 +9,13 @@ namespace Inventory.Models
         [Display(Name = "ID")]
         public int EquipmentId { get; set; }
 
-        [Required(ErrorMessage = "O campo é requerido.")]
+        [Display(Name = "Tipo de Equipamento")]
+        public virtual EquipmentType EquipmentType { get; set; }
+
+        [Display(Name = "ID Tipo de Equipamento")]
+        public int EquipmentTypeId { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é requerido.")]
         [Display(Name = "Patrimônio")]
         public long Equity { get; set; }
 
@@ -36,13 +42,7 @@ namespace Inventory.Models
         public string HD { get; set; }
 
         [Display(Name = "Placa de Vídeo")]
-        public string GPU { get; set; }
-
-        [Display(Name = "Fabricante")]
-        public string Manufacturer { get; set; }
-
-        [Display(Name = "Modelo")]
-        public string Model { get; set; }
+        public string GPU { get; set; }        
 
         public string ServiceTag { get; set; }
 
@@ -75,8 +75,8 @@ namespace Inventory.Models
         public virtual Employee Employee { get; set; }
         
         [Display(Name = "ID Colaborador")]
-        public int EmployeeId { get; set; }
-        
+        public int EmployeeId { get; set; }        
+
         public Equipment() 
         { 
         }
@@ -93,9 +93,7 @@ namespace Inventory.Models
             MEM = mem;
             Processor = processor;
             HD = hd;
-            GPU = gpu;
-            Manufacturer = manufacturer;
-            Model = model;
+            GPU = gpu;            
             ServiceTag = serviceTag;
             SerialNumber = serialNumber;
             Warranty = warranty;

@@ -11,10 +11,12 @@ namespace Inventory.Services
     public class CompanyService
     {
         private readonly ApplicationDbContext _context;
+
         public CompanyService(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public async Task<List<Company>> FindAllAsync()
         {
             return await _context.Company.OrderBy(x => x.Name).ToListAsync();

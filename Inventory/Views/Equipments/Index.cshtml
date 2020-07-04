@@ -21,12 +21,11 @@
 <table id="tabela" class="table table-striped table-hover" style="width:100%">
     <thead>
         <tr class="success">
+            <th>@Html.DisplayNameFor(model => model.EquipmentType.Info)</th>
             <th>@Html.DisplayNameFor(model => model.Employee.Name)</th>
             <th>@Html.DisplayNameFor(model => model.Equity)</th>
             <th>@Html.DisplayNameFor(model => model.OldEquity)</th>
             <th>@Html.DisplayNameFor(model => model.Hostname)</th>
-            <th>@Html.DisplayNameFor(model => model.Manufacturer)</th>
-            <th>@Html.DisplayNameFor(model => model.Model)</th>
             <th>@Html.DisplayNameFor(model => model.ServiceTag)</th>
             <th>@Html.DisplayNameFor(model => model.Warranty)</th>
             <th>@Html.DisplayNameFor(model => model.Maintenance)</th>
@@ -38,55 +37,30 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.Employee.Name)*@
-                    @Html.ActionLink(item.Employee.Name, "Details", "Equipments", new { id = item.EquipmentId }, null)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Equity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OldEquity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Hostname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Manufacturer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Model)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ServiceTag)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Warranty)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Maintenance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Active)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastUpdate)
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.EquipmentId"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a>
-                </td>
-            </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.EquipmentType.Info)</td>
+            <td>@Html.ActionLink(item.Employee.Name, "Details", "Equipments", new { id = item.EquipmentId }, null)</td>
+            <td>@Html.DisplayFor(modelItem => item.Equity)</td>
+            <td>@Html.DisplayFor(modelItem => item.OldEquity)</td>
+            <td>@Html.DisplayFor(modelItem => item.Hostname)</td>
+            <td>@Html.DisplayFor(modelItem => item.ServiceTag)</td>
+            <td>@Html.DisplayFor(modelItem => item.Warranty)</td>
+            <td>@Html.DisplayFor(modelItem => item.Maintenance)</td>
+            <td>@Html.DisplayFor(modelItem => item.Active)</td>
+            <td>@Html.DisplayFor(modelItem => item.LastUpdate)</td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.EquipmentId"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a>
+            </td>
+        </tr>
         }
     </tbody>
     <tfoot>
         <tr class="success">
+            <th>@Html.DisplayNameFor(model => model.EquipmentType.Info)</th>
             <th>@Html.DisplayNameFor(model => model.Employee.Name)</th>
             <th>@Html.DisplayNameFor(model => model.Equity)</th>
             <th>@Html.DisplayNameFor(model => model.OldEquity)</th>
             <th>@Html.DisplayNameFor(model => model.Hostname)</th>
-            <th>@Html.DisplayNameFor(model => model.Manufacturer)</th>
-            <th>@Html.DisplayNameFor(model => model.Model)</th>
             <th>@Html.DisplayNameFor(model => model.ServiceTag)</th>
             <th>@Html.DisplayNameFor(model => model.Warranty)</th>
             <th>@Html.DisplayNameFor(model => model.Maintenance)</th>

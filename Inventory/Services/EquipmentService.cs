@@ -20,26 +20,33 @@ namespace Inventory.Services
 
         public async Task<List<Equipment>> FindAllAsync()       
         {
-            return await _context.Equipment.Include(obj => obj.Employee).OrderBy(x => x.Equity).ToListAsync();
+            return await _context.Equipment
+                .Include(equipamentType => equipamentType.EquipmentType)
+                .Include(employee => employee.Employee)
+                .OrderBy(x => x.Employee.Company.Name)
+                .ToListAsync();
         }
 
-        public async Task InsertAsync(Equipment obj)
+        public async Task InsertAsync(Equipment equipment)
         {
-            _context.Add(obj);
+            _context.Add(equipment);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Equipment> FindByIdAsync(int id)
         {
-            return await _context.Equipment.Include(obj => obj.Employee).FirstOrDefaultAsync(obj => obj.EquipmentId == id);
+            return await _context.Equipment
+                .Include(equipamentType => equipamentType.EquipmentType)
+                .Include(employee => employee.Employee)
+                .FirstOrDefaultAsync(obj => obj.EquipmentId == id);
         }
 
         public async Task RemoveAsync(int id)
         {
             try
             {
-                var obj = await _context.Equipment.FindAsync(id);
-                _context.Equipment.Remove(obj);
+                var equipment = await _context.Equipment.FindAsync(id);
+                _context.Equipment.Remove(equipment);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException e)
@@ -71,8 +78,9 @@ namespace Inventory.Services
             var result = from obj in _context.Equipment select obj;
             result = result.Where(x => x.Warranty >= DateTime.Today);
             return await result
+                .Include(x => x.EquipmentType)
                 .Include(x => x.Employee)
-                .Include(x => x.Employee.Company)
+                .Include(x => x.Employee.Company)                
                 .OrderByDescending(x => x.Warranty)
                 .ToListAsync();
         }

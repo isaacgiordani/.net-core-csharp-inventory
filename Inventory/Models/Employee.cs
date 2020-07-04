@@ -56,6 +56,13 @@ namespace Inventory.Models
 
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
 
+        [Display(Name = "Informação do Colaborador")]
+        public string Info
+        {
+            get { return string.Format("{0} - {1}", Company.Name, this.Name); }
+            //set { labelFullName.Text = value; }
+        }
+
         public Employee ()
         {
         }

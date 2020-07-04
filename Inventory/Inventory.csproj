@@ -10,6 +10,8 @@
     <Compile Remove="Data\Migrations\20200701125631_OnDelete.Designer.cs" />
     <Compile Remove="Data\Migrations\20200701130500_OnDeleteUpdate.cs" />
     <Compile Remove="Data\Migrations\20200701130500_OnDeleteUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200704193309_NewModelEquipmentType.cs" />
+    <Compile Remove="Data\Migrations\20200704193309_NewModelEquipmentType.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

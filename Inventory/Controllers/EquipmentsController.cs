@@ -13,24 +13,46 @@ namespace Inventory.Controllers
     public class EquipmentsController : Controller
     {
         private readonly EquipmentService _equipmentService;
+        private readonly EquipmentTypeService _equipmentTypeService;
         private readonly EmployeeService _employeeService;
+        
 
-        public EquipmentsController(EquipmentService equipmentService, EmployeeService employeeService)
+        public EquipmentsController(EquipmentService equipmentService, EquipmentTypeService equipmentTypeService, EmployeeService employeeService)
         {
             _equipmentService = equipmentService;
+            _equipmentTypeService = equipmentTypeService;
             _employeeService = employeeService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var list = await _equipmentService.FindAllAsync();
+            List<Equipment> list = await _equipmentService.FindAllAsync();
             return View(list);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
+            }
+
+            Equipment equipment = await _equipmentService.FindByIdAsync(id.Value);
+            if (equipment == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
+            }
+            List<Employee> employees = await _employeeService.FindAllAsync();
+            List<EquipmentType> equipmentTypes = await _equipmentTypeService.FindAllAsync();
+            EquipmentFormViewModel viewModel = new EquipmentFormViewModel { Equipment = equipment, Employees = employees, EquipmentTypes = equipmentTypes };
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Create()
         {
-            var employees = await _employeeService.FindAllAsync();
-            var viewModel = new EquipmentFormViewModel { Employees = employees };
+            List<Employee> employees = await _employeeService.FindAllAsync();
+            List<EquipmentType> equipmentTypes = await _equipmentTypeService.FindAllAsync();
+            EquipmentFormViewModel viewModel = new EquipmentFormViewModel { EquipmentTypes = equipmentTypes, Employees = employees };
             return View(viewModel);
         }
 
@@ -40,8 +62,9 @@ namespace Inventory.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var employees = await _employeeService.FindAllAsync();
-                var viewModel = new EquipmentFormViewModel { Equipment = equipment, Employees = employees };
+                List<Employee> employees = await _employeeService.FindAllAsync();
+                List<EquipmentType> equipmentTypes = await _equipmentTypeService.FindAllAsync();
+                EquipmentFormViewModel viewModel = new EquipmentFormViewModel { Equipment = equipment, EquipmentTypes = equipmentTypes, Employees = employees };
                 return View(viewModel);
             }
 
@@ -51,6 +74,56 @@ namespace Inventory.Controllers
 
             await _equipmentService.InsertAsync(equipment);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
+            }
+
+            var equipment = await _equipmentService.FindByIdAsync(id.Value);
+            if (equipment == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
+            }
+
+            List<Employee> employees = await _employeeService.FindAllAsync();
+            List<EquipmentType> equipmentTypes = await _equipmentTypeService.FindAllAsync();
+            EquipmentFormViewModel viewModel = new EquipmentFormViewModel { Equipment = equipment, Employees = employees, EquipmentTypes = equipmentTypes };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Equipment equipment)
+        {
+            if (!ModelState.IsValid)
+            {
+                var employees = await _employeeService.FindAllAsync();
+                var equipmentTypes = await _equipmentTypeService.FindAllAsync();
+                var viewModel = new EquipmentFormViewModel { Equipment = equipment, Employees = employees, EquipmentTypes = equipmentTypes };
+                return View(viewModel);
+            }
+
+            if (id != equipment.EquipmentId)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não correspondente." });
+            }
+
+            try
+            {
+                equipment.LastUpdate = DateTime.Now;
+
+                await _equipmentService.UpdateAsync(equipment);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -81,72 +154,7 @@ namespace Inventory.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Não foi possível excluir o registro, pois ele possui relacionamento(s) com outra(s) tabela(s). " });
             }
-        }
-
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
-            }
-
-            var obj = await _equipmentService.FindByIdAsync(id.Value);
-            if (obj == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
-            }
-            var obj2 = await _employeeService.FindAllAsync();
-            EquipmentFormViewModel viewModel = new EquipmentFormViewModel { Equipment = obj, Employees = obj2 };
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
-            }
-
-            var obj = await _equipmentService.FindByIdAsync(id.Value);
-            if (obj == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
-            }
-
-            List<Employee> employees = await _employeeService.FindAllAsync();
-            EquipmentFormViewModel viewModel = new EquipmentFormViewModel { Equipment = obj, Employees = employees };
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Equipment equipment)
-        {
-            if (!ModelState.IsValid)
-            {
-                var employees = await _employeeService.FindAllAsync();
-                var viewModel = new EquipmentFormViewModel { Equipment = equipment, Employees = employees };
-                return View(viewModel);
-            }
-
-            if (id != equipment.EquipmentId)
-            {
-                return RedirectToAction(nameof(Error), new { message = "ID não correspondente." });
-            }
-
-            try
-            {
-                equipment.LastUpdate = DateTime.Now;
-
-                await _equipmentService.UpdateAsync(equipment);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (ApplicationException e)
-            {
-                return RedirectToAction(nameof(Error), new { message = e.Message });
-            }
-        }
+        }        
 
         public IActionResult Error(string message)
         {
