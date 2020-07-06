@@ -20,7 +20,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Employee.CompanyId" class="control-label"></label>
-                        <select asp-for="Employee.CompanyId" asp-items="@(new SelectList(Model.Companies,"CompanyId","Name"))" class="form-control"></select>
+                        <select asp-for="Employee.CompanyId" asp-items="@(new SelectList(Model.Companies,"CompanyId","FantasyName"))" class="form-control"></select>
                     </div>
                     <div class="form-group">
                         <label asp-for="Employee.Enrollment" class="control-label"></label>

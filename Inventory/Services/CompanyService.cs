@@ -19,7 +19,7 @@ namespace Inventory.Services
 
         public async Task<List<Company>> FindAllAsync()
         {
-            return await _context.Company.OrderBy(x => x.Name).ToListAsync();
+            return await _context.Company.OrderBy(x => x.CompanyName).ToListAsync();
         }
 
         public async Task InsertAsync(Company obj)

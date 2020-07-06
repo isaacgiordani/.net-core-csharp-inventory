@@ -38,7 +38,8 @@ namespace Inventory.Controllers
                 return View(company);
             }
 
-            company.Name = company.Name.ToUpper().Trim();
+            company.CompanyName = company.CompanyName.ToUpper().Trim();
+            company.FantasyName = company.FantasyName.ToUpper().Trim();
             company.Active = true;
             company.LastUpdate = DateTime.Now;
             company.Registration = DateTime.Now;
@@ -124,7 +125,8 @@ namespace Inventory.Controllers
 
             try
             {
-                company.Name = company.Name.ToUpper().Trim();
+                company.CompanyName = company.CompanyName.ToUpper().Trim();
+                company.FantasyName = company.FantasyName.ToUpper().Trim();
                 company.LastUpdate = DateTime.Now;
 
                 await _companyService.UpdateAsync(company);
@@ -133,15 +135,7 @@ namespace Inventory.Controllers
             catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
-            }
-            /*catch (NotFoundException e)
-            {
-                return RedirectToAction(nameof(Error), new { message = e.Message });
-            }
-            catch (DbConcurrencyException e)
-            {
-                return RedirectToAction(nameof(Error), new { message = e.Message });
-            }*/
+            }            
         }
 
         public IActionResult Error(string message)

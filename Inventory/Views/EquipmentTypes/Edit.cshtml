@@ -1,41 +1,48 @@
 ﻿@model Inventory.Models.EquipmentType
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Alterando tipo de Equipamento";
 }
 
-<h2>Edit</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="EquipmentTypes" asp-action="Index">Tipos de Equipamentos</a></li>
+    <li class="active">Editar</li>
+</ol>
 
-<h4>EquipmentType</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="EquipmentTypeId" />
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @ViewData["Title"]</div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EquipmentTypeId" />
+                    <div class="form-group">
+                        <label asp-for="Type" class="control-label"></label>
+                        <input asp-for="Type" class="form-control" />
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Manufacturer" class="control-label"></label>
+                        <input asp-for="Manufacturer" class="form-control" />
+                        <span asp-validation-for="Manufacturer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Model" class="control-label"></label>
+                        <input asp-for="Model" class="form-control" />
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Salvar
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Manufacturer" class="control-label"></label>
-                <input asp-for="Manufacturer" class="form-control" />
-                <span asp-validation-for="Manufacturer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
-                <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>        
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

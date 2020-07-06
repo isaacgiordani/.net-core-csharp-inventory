@@ -17,7 +17,7 @@ namespace Inventory.Models
         public string Enrollment { get; set; }
 
         [Required(ErrorMessage = "O campo é requerido.")]
-        [MaxLength(60, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
+        [MaxLength(50, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
         [Display(Name = "Colaborador")]
         public string Name { get; set; }
 
@@ -54,14 +54,23 @@ namespace Inventory.Models
         [Display(Name = "Empresa")]
         public int CompanyId { get; set; }
 
+        [Display(Name = "Informação do Colaborador")]
+        [MaxLength(75, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
+        public string InfoEmployee { get; set; }
+        
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
 
-        [Display(Name = "Informação do Colaborador")]
-        public string Info
-        {
-            get { return string.Format("{0} - {1}", Company.Name, this.Name); }
-            //set { labelFullName.Text = value; }
-        }
+        //[Display(Name = "Tipo de Equipamento")]
+        //public string EmployeeInfo
+        //{
+        //    get 
+        //    {
+        //        if (Company.FantasyName == null)
+        //            return string.Format("{0}", this.Name);
+        //        return string.Format("{0} - {1}", Company.FantasyName, this.Name);
+        //    }
+        //    //set { labelFullName.Text = value; }
+        //}
 
         public Employee ()
         {
@@ -79,8 +88,8 @@ namespace Inventory.Models
             Active = active;
             Registration = registration;
             LastUpdate = lastUpdate;
-            Company = company;
-        }
+            Company = company;          
+}
 
         public void AddEquipment(Equipment e)
         {

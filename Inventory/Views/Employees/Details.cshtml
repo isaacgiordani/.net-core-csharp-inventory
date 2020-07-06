@@ -13,14 +13,21 @@
 <div class="panel panel-default">
     <div class="panel-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> @ViewData["Title"] </div>
     <div class="panel-body">
-
+        <a asp-action="EquipmentsByEmployee" asp-route-id="@Model.EmployeeId" class="btn btn-success"> Equipamentos do Colaborador</a>
+        <hr />
         <div>
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Company.Name)
+                    @Html.DisplayNameFor(model => model.Company.CompanyName)
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Company.Name)
+                    @Html.DisplayFor(model => model.Company.CompanyName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Company.FantasyName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Company.FantasyName)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Enrollment)

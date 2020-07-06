@@ -81,9 +81,11 @@ namespace Inventory.Models
         { 
         }
 
-        public Equipment(int equipmentId, long equity, long? oldEquity, string hostname, string oldHostname, string mac, string ip, string mem, string processor, string hd, string gpu, string manufacturer, string model, string serviceTag, string serialNumber, DateTime? warranty, DateTime? maintenance, string note, bool active, DateTime registration, DateTime lastUpdate, Employee employee)
+        public Equipment(int equipmentId, EquipmentType equipmentType, int equipmentTypeId, long equity, long? oldEquity, string hostname, string oldHostname, string mac, string ip, string mem, string processor, string hd, string gpu, string serviceTag, string serialNumber, DateTime? warranty, DateTime? maintenance, string note, bool active, DateTime registration, DateTime lastUpdate, Employee employee, int employeeId)
         {
             EquipmentId = equipmentId;
+            EquipmentType = equipmentType;
+            EquipmentTypeId = equipmentTypeId;
             Equity = equity;
             OldEquity = oldEquity;
             Hostname = hostname;
@@ -93,7 +95,7 @@ namespace Inventory.Models
             MEM = mem;
             Processor = processor;
             HD = hd;
-            GPU = gpu;            
+            GPU = gpu;
             ServiceTag = serviceTag;
             SerialNumber = serialNumber;
             Warranty = warranty;
@@ -103,6 +105,7 @@ namespace Inventory.Models
             Registration = registration;
             LastUpdate = lastUpdate;
             Employee = employee;
+            EmployeeId = employeeId;
         }
     }
 }

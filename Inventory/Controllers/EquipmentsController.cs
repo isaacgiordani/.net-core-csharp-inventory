@@ -170,6 +170,6 @@ namespace Inventory.Controllers
         {
             var result = await _equipmentService.EquipmentsUnderWarrantyAsync();
             return View(result);
-        }
+        }        
     }
 }

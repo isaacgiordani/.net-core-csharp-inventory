@@ -1,39 +1,51 @@
 ﻿@model Inventory.Models.EquipmentType
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Removendo tipo de Equipamento";
 }
 
-<h2>Delete</h2>
+<ol class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="" asp-controller="EquipmentTypes" asp-action="Index">Tipos de Equipamentos</a></li>
+    <li class="active">Remover</li>
+</ol>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>EquipmentType</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Manufacturer)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="EquipmentTypeId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> @ViewData["Title"]</div>
+    <div class="panel-body">
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+            Você tem certeza que deseja remover este tipo de equipamento?
+        </div>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Type)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Manufacturer)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Model)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Model)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
+                <input type="hidden" asp-for="EquipmentTypeId" />
+                <button type="submit" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remover
+                </button>
+            </form>
+        </div>
+    </div>
 </div>

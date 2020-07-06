@@ -21,9 +21,14 @@
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" placeholder="Nome da Empresa"/>
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="CompanyName" class="control-label"></label>
+                        <input asp-for="CompanyName" class="form-control" placeholder="Razão Social" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FantasyName" class="control-label"></label>
+                        <input asp-for="FantasyName" class="form-control" placeholder="Nome Fantasia" />
+                        <span asp-validation-for="FantasyName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="CNPJ" class="control-label"></label>
@@ -32,7 +37,7 @@
                     </div>
                     <hr />
                     <div class="form-group">
-                        <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |                        
+                        <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</a> |
                         <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Salvar
                         </button>

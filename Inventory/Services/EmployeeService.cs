@@ -19,7 +19,7 @@ namespace Inventory.Services
 
         public async Task<List<Employee>> FindAllAsync()
         {
-            return await _context.Employee.Include(obj => obj.Company).OrderBy(y => y.Name).OrderBy(x => x.Company.Name).ToListAsync();
+            return await _context.Employee.Include(obj => obj.Company).OrderBy(y => y.Name).OrderBy(x => x.Company.FantasyName).ToListAsync();
         }
 
         public async Task InsertAsync(Employee obj)
@@ -64,5 +64,17 @@ namespace Inventory.Services
                 throw new DbConcurrencyException("Erro ao atualizar o registro: " + e.Message);
             }
         }
+
+        public async Task<List<Equipment>> EquipmentsByEmployeeAsync(int? Id)
+        {
+            var result = from obj in _context.Equipment select obj;
+            result = result.Where(x => x.EmployeeId == Id.Value);
+            return await result
+                .Include(x => x.EquipmentType)
+                .Include(x => x.Employee)
+                .Include(x => x.Employee.Company)
+                .OrderByDescending(x => x.EquipmentType.Type)
+                .ToListAsync();
     }
+}
 }

@@ -167,5 +167,21 @@ namespace Inventory.Controllers
             };
             return View(viewModel);
         }
+
+        public async Task<IActionResult> EquipmentsByEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não fornecido." });
+            }
+
+            var obj = await _employeeService.EquipmentsByEmployeeAsync(id.Value);
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "ID não encontrado." });
+            }
+                        
+            return View(obj);
+        }
     }
 }

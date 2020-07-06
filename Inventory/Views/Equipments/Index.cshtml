@@ -37,8 +37,8 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.EquipmentType.Info)</td>
+        <tr>            
+            <td>@Html.ActionLink(item.EquipmentType.Info, "Details", "Equipments", new { id = item.EquipmentId }, null)</td>
             <td>@Html.ActionLink(item.Employee.Name, "Details", "Equipments", new { id = item.EquipmentId }, null)</td>
             <td>@Html.DisplayFor(modelItem => item.Equity)</td>
             <td>@Html.DisplayFor(modelItem => item.OldEquity)</td>

@@ -23,7 +23,7 @@ namespace Inventory.Services
             return await _context.Equipment
                 .Include(equipamentType => equipamentType.EquipmentType)
                 .Include(employee => employee.Employee)
-                .OrderBy(x => x.Employee.Company.Name)
+                .OrderBy(x => x.Employee.Company.FantasyName)
                 .ToListAsync();
         }
 

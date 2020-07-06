@@ -11,10 +11,15 @@ namespace Inventory.Models
         [Display(Name = "ID")]
         public int CompanyId { get; set; }
 
-        [Display(Name = "Empresa")]
+        [Display(Name = "Razão Social")]
         [Required(ErrorMessage = "O campo {0} é requerido.")]
         [StringLength(60, MinimumLength = 5, ErrorMessage ="O campo {0} deve possuir entre {2} e {1} caracteres")]
-        public string Name { get; set; }
+        public string CompanyName { get; set; }
+
+        [Display(Name = "Fantasia")]
+        [Required(ErrorMessage = "O campo {0} é requerido.")]
+        [StringLength(25, MinimumLength = 3, ErrorMessage = "O campo {0} deve possuir entre {2} e {1} caracteres")]
+        public string FantasyName { get; set; }
 
         [RegularExpression(@"^\d{2}.\d{3}.\d{3}/\d{4}-\d{2}$",
         ErrorMessage = "O CNPJ deve estar no formato 00.000.000/0000-00")]
@@ -38,10 +43,11 @@ namespace Inventory.Models
         {
         }
 
-        public Company(int companyId, string name, string cnpj, bool active, DateTime registration, DateTime lastUpdate)
+        public Company(int companyId, string companyName, string fantasyName, string cnpj, bool active, DateTime registration, DateTime lastUpdate)
         {
             CompanyId = companyId;
-            Name = name;
+            CompanyName = companyName;
+            FantasyName = fantasyName;
             CNPJ = cnpj;
             Active = active;
             Registration = registration;
