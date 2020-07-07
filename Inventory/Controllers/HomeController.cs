@@ -1,14 +1,27 @@
 ﻿using Inventory.Models.ViewModels;
+using Inventory.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Inventory.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly HomeService _homeService;
+
+        public HomeController(HomeService homeService)
         {
-            return View();
+            _homeService = homeService;            
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var allActiveCompanies = await _homeService.AllActiveCompaniesAsync();
+            var allActiveEmployees = await _homeService.AllActiveEmployeesAsync();
+            var allActiveEquipments = await _homeService.AllActiveEquipmentsAsync();            
+            HomeFormViewModel viewModel = new HomeFormViewModel { AllActiveCompanies = allActiveCompanies, AllActiveEmployees = allActiveEmployees, AllActiveEquipments = allActiveEquipments };
+            return View(viewModel);
         }
 
         public IActionResult About()
