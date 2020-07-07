@@ -15,7 +15,7 @@ namespace Inventory.Models
         [Required(ErrorMessage = "O campo {0} é requerido.")]
         [StringLength(25, MinimumLength = 3, ErrorMessage = "O campo {0} deve possuir entre {2} e {1} caracteres")]
         [Display(Name = "Fabricante")]
-        public string Manufacturer { get; set; }        
+        public string Manufacturer { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é requerido.")]
         [StringLength(25, MinimumLength = 2, ErrorMessage = "O campo {0} deve possuir entre {2} e {1} caracteres")]
@@ -25,8 +25,7 @@ namespace Inventory.Models
         [Display(Name = "Tipo de Equipamento")]
         public string Info
         {
-            get { return string.Format("{0} {1} {2}", Type, Manufacturer, Model); }
-            //set { labelFullName.Text = value; }
+            get { return string.Format("{0} {1} {2}", Type, Manufacturer, Model); }            
         }
 
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();

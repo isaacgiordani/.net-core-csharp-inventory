@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Inventory.Models
 {
@@ -47,7 +46,7 @@ namespace Inventory.Models
         [Display(Name = "Última Atualização")]
         [DataType(DataType.DateTime)]
         public DateTime LastUpdate { get; set; }
-        
+
         [Display(Name = "Empresa")]
         public virtual Company Company { get; set; }
 
@@ -57,7 +56,7 @@ namespace Inventory.Models
         [Display(Name = "Informação do Colaborador")]
         [MaxLength(75, ErrorMessage = "O campo suporta no máximo {1} caracteres")]
         public string InfoEmployee { get; set; }
-        
+
         public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
 
         //[Display(Name = "Tipo de Equipamento")]
@@ -72,7 +71,7 @@ namespace Inventory.Models
         //    //set { labelFullName.Text = value; }
         //}
 
-        public Employee ()
+        public Employee()
         {
         }
 
@@ -88,36 +87,7 @@ namespace Inventory.Models
             Active = active;
             Registration = registration;
             LastUpdate = lastUpdate;
-            Company = company;          
-}
-
-        public void AddEquipment(Equipment e)
-        {
-            Equipments.Add(e);
-        }
-
-        public void RemoveEquipment(Equipment e)
-        {
-            Equipments.Remove(e);
-        }
-
-        public int TotalActiveEquipment()
-        {
-            return Equipments.Where(e => e.Active == true).Count();
-        }
-        public int TotalInactiveEquipment()
-        {
-            return Equipments.Where(e => e.Active == false).Count();
-        }
-
-        public int TotalUnderWarranty()
-        {
-            return Equipments.Where(e => e.Warranty >= DateTime.Now & e.EmployeeId == EmployeeId).Count();
-        }
-
-        public int TotalOutOfWarranty()
-        {
-            return Equipments.Where(e => e.Warranty <= DateTime.Now).Count();
+            Company = company;
         }
     }
 }

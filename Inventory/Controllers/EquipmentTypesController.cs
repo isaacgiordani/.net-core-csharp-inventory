@@ -2,6 +2,7 @@
 using Inventory.Models.ViewModels;
 using Inventory.Services;
 using Inventory.Services.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Inventory.Controllers
 {
+    [Authorize]
     public class EquipmentTypesController : Controller
     {
         private readonly EquipmentTypeService _equipmentTypeService;

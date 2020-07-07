@@ -2,6 +2,7 @@
 using Inventory.Models.ViewModels;
 using Inventory.Services;
 using Inventory.Services.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Inventory.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private readonly CompanyService _companyService;
@@ -24,11 +26,13 @@ namespace Inventory.Controllers
             return View(list);
         }
 
+         
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Company company)

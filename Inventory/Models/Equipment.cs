@@ -42,7 +42,7 @@ namespace Inventory.Models
         public string HD { get; set; }
 
         [Display(Name = "Placa de Vídeo")]
-        public string GPU { get; set; }        
+        public string GPU { get; set; }
 
         public string ServiceTag { get; set; }
 
@@ -73,12 +73,12 @@ namespace Inventory.Models
 
         [Display(Name = "Colaborador")]
         public virtual Employee Employee { get; set; }
-        
-        [Display(Name = "ID Colaborador")]
-        public int EmployeeId { get; set; }        
 
-        public Equipment() 
-        { 
+        [Display(Name = "ID Colaborador")]
+        public int EmployeeId { get; set; }
+
+        public Equipment()
+        {
         }
 
         public Equipment(int equipmentId, EquipmentType equipmentType, int equipmentTypeId, long equity, long? oldEquity, string hostname, string oldHostname, string mac, string ip, string mem, string processor, string hd, string gpu, string serviceTag, string serialNumber, DateTime? warranty, DateTime? maintenance, string note, bool active, DateTime registration, DateTime lastUpdate, Employee employee, int employeeId)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Inventory.Models
 {
@@ -13,7 +12,7 @@ namespace Inventory.Models
 
         [Display(Name = "Razão Social")]
         [Required(ErrorMessage = "O campo {0} é requerido.")]
-        [StringLength(60, MinimumLength = 5, ErrorMessage ="O campo {0} deve possuir entre {2} e {1} caracteres")]
+        [StringLength(60, MinimumLength = 5, ErrorMessage = "O campo {0} deve possuir entre {2} e {1} caracteres")]
         public string CompanyName { get; set; }
 
         [Display(Name = "Fantasia")]
@@ -52,21 +51,6 @@ namespace Inventory.Models
             Active = active;
             Registration = registration;
             LastUpdate = lastUpdate;
-        }
-
-        public void AddEmployee(Employee employee) 
-        {
-            Employees.Add(employee);
-        }
-
-        public int TotalActiveEquipments()
-        {
-            return Employees.Sum(employee => employee.TotalActiveEquipment());
-        }
-
-        public int TotalInactiveEquipments()
-        {
-            return Employees.Sum(employee => employee.TotalInactiveEquipment());
         }
     }
 }
