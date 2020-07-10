@@ -1,12 +1,25 @@
-#Sistema de gerenciamento de equipamentos de TI.
+# Sistema de gerenciamento de equipamentos de TI.
 
-##Sistema criado para ajudar no controle dos equipamentos de informática e seus usuários.
+## Auxílio no controle dos equipamentos de informática e seus usuários.
 
-Ajuda a identificar os equipamentos que estão com determinado colaborador, equipamentos na garantia ou fora dela, equipamentos com manutenção preventiva realizada a muito tempo, equipamentos ativos e os que não estão mais em funcionamento, etc..
+### Sistema em desenvolvimento, ainda faltam implementações
 
-Sistema ainda em desenvolvimento. Futuramente pretendo exportar pesquisas filtradas para o excel e emitir relatórios como: termos de empréstimo de equipamento, equipamentos que estão com determinado funcionário, entre outras funcionalidades.
+- [x] Ajuda a identificar os equipamentos que estão com determinado colaborador
+- [x] Equipamentos na garantia ou fora dela
+- [x] Controle de manutenção preventiva 
+- [x] Controle de equipamentos ativos e os que não estão mais em funcionamento
+- [ ] Exportar pesquisas filtradas para o excel
+- [ ] Gerar PDF com os equipamentos que estão com determinado funcionário
+- [ ] Gerar PDF com o Termos de empréstimo de equipamento para o Colaborador assinar
+
+
 
 Criado utilizando as seguintes tecnologias:
-.Net Core
-C#
-MVC
+<ul>
+  <li>.Net Core</li>
+  <li>C#</li>
+  <li>MVC</li>
+  <li>JavaScript</li>
+  <li>HTML</li>
+  <li>Bootstrap</li>  
+</ul>
