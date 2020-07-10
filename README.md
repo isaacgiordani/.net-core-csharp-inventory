@@ -12,7 +12,7 @@
 - [ ] Gerar PDF com os equipamentos que estão com determinado funcionário
 - [ ] Gerar PDF com o Termos de empréstimo de equipamento para o Colaborador assinar
 
-
+*Estou utilizando o MySql como SGDB*
 
 Criado utilizando as seguintes tecnologias:
 <ul>
